@@ -7,7 +7,7 @@ public class PathMaker : MonoBehaviour {
     public Transform pathMakerSpherePrefab;
     int counter = 0, counterLimit, prefabSelection = 0;
     float leftChanceLimit, rightChanceLimit, spawnChanceLowLimit;
-    public static Vector2 center;
+    Vector2 center;
 
     public Transform pyramid, rock, nile;
     Transform newFloorTile;
@@ -20,6 +20,7 @@ public class PathMaker : MonoBehaviour {
         leftChanceLimit = Random.Range(0.01f, 0.07f);
         rightChanceLimit = leftChanceLimit + Random.Range(0.01f, 0.07f);
         spawnChanceLowLimit = Random.Range(0.97f, 0.985f);
+
 	}
 	
 	void Update () {
@@ -89,8 +90,8 @@ public class PathMaker : MonoBehaviour {
 
     void ResizeCamera()
     {
+
         center = new Vector2(((GameManager.farRight - Mathf.Abs(GameManager.farLeft)) / 2), (GameManager.top - Mathf.Abs(GameManager.bottom)) / 2);
-        Debug.Log(GameManager.farLeft);
-        Debug.Log(GameManager.farRight);
+        Camera.main.transform.position = new Vector3(center.x, 60f + GameManager.globalTileCount/2, center.y);
     }
 }
